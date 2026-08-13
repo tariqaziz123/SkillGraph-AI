@@ -1,3 +1,4 @@
+import { Request, Response } from "express";
 import { getSkills } from "../services/skill.service";
 
 export async function fetchSkills(
