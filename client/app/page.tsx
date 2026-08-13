@@ -1,5 +1,6 @@
 import DeveloperCard from "@/components/DeveloperCard";
 import SearchBar from "@/components/SearchBar";
+import Stats from "@/components/Stats";
 import { getDevelopers } from "@/lib/api";
 import { Developer } from "@/types/developer";
 
@@ -38,7 +39,12 @@ export default async function HomePage({ searchParams }: Props) {
 
             <SearchBar />
           </div>
-
+          <Stats
+            developers={8}
+            skills={10}
+            companies={5}
+            projects={6}
+          />
           {/* Results */}
           <div className="mt-16">
             <div className="mb-6 flex items-center justify-between">
