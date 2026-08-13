@@ -7,36 +7,58 @@ type Props = {
 
 export default function DeveloperCard({ developer }: Props) {
   return (
-    <div className="group rounded-2xl border border-slate-800 bg-slate-900/70 p-6 transition hover:-translate-y-1 hover:border-cyan-500/50">
-      <div className="mb-5 flex items-start justify-between">
-        <div>
-          <h2 className="text-xl font-semibold text-white">
-            {developer.name}
-          </h2>
+    <div className="group rounded-2xl border border-slate-800 bg-slate-900/70 p-6 transition-all duration-300 hover:-translate-y-2 hover:border-cyan-500 hover:shadow-xl hover:shadow-cyan-500/10">
 
-          {developer.location && (
-            <p className="mt-1 text-sm text-slate-400">
-              {developer.location}
-            </p>
-          )}
-        </div>
-
-        <span className="rounded-full bg-cyan-500/10 px-3 py-1 text-xs font-medium text-cyan-400">
-          Developer
-        </span>
+      {/* Avatar */}
+      <div className="flex h-16 w-16 items-center justify-center rounded-full bg-cyan-500/10 text-3xl">
+        👤
       </div>
 
-      {developer.experienceYears !== undefined && (
-        <p className="mb-5 text-sm text-slate-400">
-          {developer.experienceYears} years experience
+      {/* Name */}
+      <h2 className="mt-5 text-xl font-bold">
+        {developer.name}
+      </h2>
+
+      {/* Location */}
+      {developer.location && (
+        <p className="mt-2 text-sm text-slate-400">
+          📍 {developer.location}
         </p>
       )}
 
+      {/* Experience */}
+      {developer.experienceYears !== undefined && (
+        <p className="mt-2 text-sm text-slate-400">
+          💼 {developer.experienceYears} years experience
+        </p>
+      )}
+
+      {/* Skills */}
+      {developer.skills?.length > 0 && (
+        <div className="mt-5 flex flex-wrap gap-2">
+          {developer.skills.slice(0, 3).map((skill: any) => (
+            <span
+              key={skill.id ?? skill.name}
+              className="rounded-full bg-cyan-500/10 px-3 py-1 text-xs text-cyan-300"
+            >
+              {skill.name}
+            </span>
+          ))}
+
+          {developer.skills.length > 3 && (
+            <span className="rounded-full bg-slate-800 px-3 py-1 text-xs text-slate-300">
+              +{developer.skills.length - 3} more
+            </span>
+          )}
+        </div>
+      )}
+
+      {/* Button */}
       <Link
         href={`/developers/${developer.id}`}
-        className="inline-flex rounded-lg bg-cyan-500 px-4 py-2 text-sm font-medium text-slate-950 transition hover:bg-cyan-400"
+        className="mt-6 inline-flex items-center font-medium text-cyan-400 transition group-hover:translate-x-1"
       >
-        View Profile
+        View Profile →
       </Link>
     </div>
   );
