@@ -100,3 +100,15 @@ export async function getCompanies() {
 
   return response.json();
 }
+
+export async function getStats() {
+  const response = await fetch(`${API_URL}/stats`, {
+    cache: "no-store",
+  });
+
+  if (!response.ok) {
+    throw new Error("Failed to fetch stats");
+  }
+
+  return response.json();
+}

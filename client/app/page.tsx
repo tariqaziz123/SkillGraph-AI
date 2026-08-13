@@ -1,7 +1,7 @@
 import DeveloperCard from "@/components/DeveloperCard";
 import SearchBar from "@/components/SearchBar";
 import Stats from "@/components/Stats";
-import { getDevelopers } from "@/lib/api";
+import { getDevelopers, getStats } from "@/lib/api";
 import { Developer } from "@/types/developer";
 
 type Props = {
@@ -15,9 +15,13 @@ export default async function HomePage({ searchParams }: Props) {
   const skill = params.skill?.trim() ?? "";
 
   try {
-    const response = await getDevelopers(skill);
+    const [developersResponse, statsResponse] = await Promise.all([
+      getDevelopers(skill),
+      getStats(),
+    ]);
 
-    const developers: Developer[] = response.data ?? response;
+    const developers = developersResponse.data ?? developersResponse;
+    const stats = statsResponse.data ?? statsResponse;
 
     return (
       <main className="min-h-screen bg-slate-950 text-white">
@@ -40,10 +44,10 @@ export default async function HomePage({ searchParams }: Props) {
             <SearchBar />
           </div>
           <Stats
-            developers={8}
-            skills={10}
-            companies={5}
-            projects={6}
+            developers={stats.developers}
+            skills={stats.skills}
+            companies={stats.companies}
+            projects={stats.projects}
           />
           {/* Results */}
           <div className="mt-16">
