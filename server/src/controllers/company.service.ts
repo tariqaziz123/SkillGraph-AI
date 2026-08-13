@@ -1,3 +1,4 @@
+import { Request, Response } from "express";
 import { getCompanies } from "../services/company.service";
 
 export async function fetchCompanies(

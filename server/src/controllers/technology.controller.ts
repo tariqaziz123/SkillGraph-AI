@@ -1,3 +1,4 @@
+import { Request, Response } from "express";
 import { getTechnologies } from "../services/technology.service";
 
 export async function fetchTechnologies(

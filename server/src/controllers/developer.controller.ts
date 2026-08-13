@@ -34,15 +34,25 @@ export async function getDeveloper(
 ): Promise<void> {
 
     try {
-        const { id } = req.params;
+        const id = req.params.id;
+
+        if (Array.isArray(id)) {
+            res.status(400).json({
+                success: false,
+                message: "Invalid developer id",
+            });
+            return;
+        }
 
         if (!id.startsWith("dev-")) {
-            return res.status(400).json({
+            res.status(400).json({
                 success: false,
-                message: "Invalid developer id"
+                message: "Invalid developer id",
             });
+            return;
         }
-        const developer = await getDeveloperById(req.params.id);
+
+        const developer = await getDeveloperById(id);
 
         if (!developer) {
             res.status(404).json({
@@ -69,7 +79,17 @@ export async function getRecommendations(
     res: Response
 ): Promise<void> {
     try {
-        const developers = await getRecommendedDevelopers(req.params.id);
+        const id = req.params.id;
+
+if (Array.isArray(id)) {
+    res.status(400).json({
+        success: false,
+        message: "Invalid developer id",
+    });
+    return;
+}
+
+const developers = await getRecommendedDevelopers(id);
 
         res.status(200).json({
             success: true,
@@ -90,7 +110,17 @@ export async function getProjects(
   res: Response
 ) {
   try {
-    const projects = await getDeveloperProjects(req.params.id);
+    const id = req.params.id;
+
+if (Array.isArray(id)) {
+    res.status(400).json({
+        success: false,
+        message: "Invalid developer id",
+    });
+    return;
+}
+
+const projects = await getDeveloperProjects(id);
 
     res.json({
       success: true,
