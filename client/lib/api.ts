@@ -1,8 +1,14 @@
 const API_URL =
   process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000";
 
-export async function getDevelopers() {
-  const response = await fetch(`${API_URL}/developers`, {
+export async function getDevelopers(skill?: string) {
+  const url = new URL(`${API_URL}/developers`);
+
+  if (skill?.trim()) {
+    url.searchParams.set("skill", skill.trim());
+  }
+
+  const response = await fetch(url.toString(), {
     cache: "no-store",
   });
 
