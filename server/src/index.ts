@@ -4,6 +4,7 @@ import dotenv from "dotenv";
 import developerRoutes from "./routes/developer.routes";
 import { errorHandler } from "./middleware/error.middleware";
 import { notFound } from "./middleware/notFound.middleware";
+import skillRoutes from "./routes/skill.routes";
 
 dotenv.config();
 
@@ -20,6 +21,7 @@ app.get("/", (req, res) => {
 });
 
 app.use("/developers", developerRoutes);
+app.use("/skills", skillRoutes);
 
 app.use(notFound);
 

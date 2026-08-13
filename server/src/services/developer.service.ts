@@ -93,3 +93,28 @@ export async function getRecommendedDevelopers(id: string) {
     await session.close();
   }
 }
+
+export async function getDeveloperProjects(id: string) {
+  const session = driver.session();
+
+  try {
+    const result = await session.run(
+      `
+      MATCH (d:Developer {id: $id})-[:WORKED_ON]->(p:Project)
+      OPTIONAL MATCH (p)-[:USES]->(t:Technology)
+
+      RETURN
+        p,
+        collect(DISTINCT t.name) AS technologies
+      `,
+      { id }
+    );
+
+    return result.records.map((record) => ({
+      ...record.get("p").properties,
+      technologies: record.get("technologies"),
+    }));
+  } finally {
+    await session.close();
+  }
+}

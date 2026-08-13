@@ -3,6 +3,7 @@ import {
     getAllDevelopers,
     getDeveloperById,
     getRecommendedDevelopers,
+    getDeveloperProjects
 } from "../services/developer.service";
 export async function getDevelopers(
     req: Request,
@@ -82,4 +83,24 @@ export async function getRecommendations(
             message: "Failed to fetch recommendations",
         });
     }
+}
+
+export async function getProjects(
+  req: Request,
+  res: Response
+) {
+  try {
+    const projects = await getDeveloperProjects(req.params.id);
+
+    res.json({
+      success: true,
+      count: projects.length,
+      data: projects,
+    });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: "Failed to fetch projects",
+    });
+  }
 }
