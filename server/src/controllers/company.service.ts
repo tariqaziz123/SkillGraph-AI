@@ -1,14 +1,21 @@
 import { getCompanies } from "../services/company.service";
 
 export async function fetchCompanies(
-  req: Request,
-  res: Response
+    req: Request,
+    res: Response
 ) {
-  const companies = await getCompanies();
+    try {
+        const companies = await getCompanies();
 
-  res.json({
-    success: true,
-    count: companies.length,
-    data: companies,
-  });
+        res.json({
+            success: true,
+            count: companies.length,
+            data: companies,
+        });
+    } catch (error) {
+        res.status(500).json({
+            success: false,
+            message: "Error fetching companies",
+        });
+    }
 }
