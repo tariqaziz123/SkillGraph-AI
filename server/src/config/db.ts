@@ -3,7 +3,6 @@ dotenv.config();
 
 import neo4j from "neo4j-driver";
 
-console.log("URI:", process.env.NEO4J_URI);
 const driver = neo4j.driver(
   process.env.NEO4J_URI!,
   neo4j.auth.basic(
