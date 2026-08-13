@@ -45,9 +45,9 @@ export default function DeveloperCard({ developer }: Props) {
             </span>
           ))}
 
-          {developer.skills.length > 3 && (
+          {developer?.skills?.length > 3 && (
             <span className="rounded-full bg-slate-800 px-3 py-1 text-xs text-slate-300">
-              +{developer.skills.length - 3} more
+              +{developer?.skills?.length - 3} more
             </span>
           )}
         </div>
