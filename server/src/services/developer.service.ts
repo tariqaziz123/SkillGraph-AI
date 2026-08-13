@@ -64,3 +64,32 @@ export async function getDeveloperById(id: string) {
     await session.close();
   }
 }
+
+export async function getRecommendedDevelopers(id: string) {
+  const session = driver.session();
+
+  try {
+    const result = await session.run(
+      `
+      MATCH (d:Developer {id: $id})-[:HAS_SKILL]->(skill:Skill)<-[:HAS_SKILL]-(other:Developer)
+      WHERE d <> other
+
+      RETURN
+        other,
+        count(skill) AS commonSkills,
+        collect(skill.name) AS sharedSkills
+
+      ORDER BY commonSkills DESC
+      `,
+      { id }
+    );
+
+    return result.records.map((record) => ({
+      ...record.get("other").properties,
+      commonSkills: record.get("commonSkills").toNumber(),
+      sharedSkills: record.get("sharedSkills"),
+    }));
+  } finally {
+    await session.close();
+  }
+}

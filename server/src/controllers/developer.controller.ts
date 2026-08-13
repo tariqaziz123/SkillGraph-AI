@@ -2,6 +2,7 @@ import { Request, Response } from "express";
 import {
   getAllDevelopers,
   getDeveloperById,
+  getRecommendedDevelopers,
 } from "../services/developer.service";
 export async function getDevelopers(
   req: Request,
@@ -42,6 +43,23 @@ export async function getDeveloper(
 
     res.status(500).json({
       message: "Internal Server Error",
+    });
+  }
+}
+
+export async function getRecommendations(
+  req: Request,
+  res: Response
+): Promise<void> {
+  try {
+    const developers = await getRecommendedDevelopers(req.params.id);
+
+    res.json(developers);
+  } catch (error) {
+    console.error(error);
+
+    res.status(500).json({
+      message: "Failed to fetch recommendations",
     });
   }
 }
