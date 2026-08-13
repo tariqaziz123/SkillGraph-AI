@@ -1,4 +1,5 @@
 import DeveloperCard from "@/components/DeveloperCard";
+import PageHeader from "@/components/PageHeader";
 import SearchBar from "@/components/SearchBar";
 import Stats from "@/components/Stats";
 import { getDevelopers, getStats } from "@/lib/api";
@@ -25,25 +26,14 @@ export default async function HomePage({ searchParams }: Props) {
 
     return (
       <main className="min-h-screen bg-slate-950 text-white">
-        <section  className="relative overflow-hidden rounded-3xl border border-slate-800 bg-gradient-to-br from-slate-900 via-slate-950 to-cyan-950/30 px-8 py-20">
+        <section className="relative overflow-hidden rounded-3xl border border-slate-800 bg-gradient-to-br from-slate-900 via-slate-950 to-cyan-950/30 px-8 py-20">
           {/* Hero */}
           <div className="mx-auto max-w-3xl text-center">
-            <p className="text-sm font-semibold uppercase tracking-[0.3em] text-cyan-400">
-      SkillGraph AI
-    </p>
-
-    <h1 className="mt-5 text-5xl font-extrabold leading-tight tracking-tight">
-      Discover Developers
-      <span className="block text-cyan-400">
-        Through Graph Intelligence
-      </span>
-    </h1>
-
-    <p className="mx-auto mt-6 max-w-2xl text-lg leading-8 text-slate-400">
-      Search developers by skills, explore projects,
-      discover technologies, companies, and receive
-      graph-powered developer recommendations.
-    </p>
+            <PageHeader
+              eyebrow="SkillGraph AI"
+              title="Discover Developers"
+              description="Search developers by skills, explore projects, discover technologies and receive graph-powered recommendations."
+            />
 
             <SearchBar />
           </div>
