@@ -261,50 +261,89 @@ export default async function DeveloperPage({ params }: Props) {
                     </section>
 
                     {/* Recommendations */}
-                    <section className="mt-10 pb-16">
-                        <h2 className="text-2xl font-semibold">
-                            Recommended Developers
-                        </h2>
+                    <section className="mt-12 pb-16">
+                        <div>
+                            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-cyan-400">
+                                Graph Connections
+                            </p>
+
+                            <h2 className="mt-2 text-2xl font-bold">
+                                Recommended Developers
+                            </h2>
+
+                            <p className="mt-2 text-slate-400">
+                                Developers with similar skills based on the knowledge graph.
+                            </p>
+                        </div>
 
                         {recommendations.length === 0 ? (
-                            <p className="mt-4 text-slate-400">
-                                No similar developers found.
-                            </p>
+                            <div className="mt-6 rounded-2xl border border-dashed border-slate-700 bg-slate-900/40 p-8 text-center">
+                                <div className="text-4xl">🔍</div>
+
+                                <p className="mt-3 text-slate-400">
+                                    No similar developers found.
+                                </p>
+                            </div>
                         ) : (
-                            <div className="mt-5 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-                                {recommendations.map((developer: any) => (
+                            <div className="mt-6 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+                                {recommendations.map((recommended: any) => (
                                     <Link
-                                        key={developer.id}
-                                        href={`/developers/${developer.id}`}
-                                        className="rounded-2xl border border-slate-800 bg-slate-900/60 p-5 transition hover:border-cyan-500/50"
+                                        key={recommended.id}
+                                        href={`/developers/${recommended.id}`}
+                                        className="group rounded-2xl border border-slate-800 bg-slate-900/60 p-6 transition-all duration-300 hover:-translate-y-1 hover:border-cyan-500/50 hover:bg-slate-900 hover:shadow-lg hover:shadow-cyan-500/5"
                                     >
-                                        <h3 className="font-semibold">
-                                            {developer.name}
-                                        </h3>
+                                        {/* Developer */}
+                                        <div className="flex items-center gap-4">
+                                            <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-cyan-500/10 text-2xl">
+                                                👨‍💻
+                                            </div>
 
-                                        <p className="mt-2 text-sm text-slate-400">
-                                            {developer.commonSkills} shared skills
-                                        </p>
+                                            <div>
+                                                <h3 className="font-semibold transition group-hover:text-cyan-400">
+                                                    {recommended.name}
+                                                </h3>
 
-                                        {developer.sharedSkills?.length > 0 && (
-                                            <div className="mt-3 flex flex-wrap gap-2">
-                                                {developer.sharedSkills.map(
-                                                    (skill: string) => (
-                                                        <span
-                                                            key={skill}
-                                                            className="rounded-full bg-cyan-500/10 px-2.5 py-1 text-xs text-cyan-300"
-                                                        >
-                                                            {skill}
-                                                        </span>
-                                                    )
-                                                )}
+                                                <p className="mt-1 text-xs text-slate-500">
+                                                    {recommended.commonSkills} shared{" "}
+                                                    {recommended.commonSkills === 1
+                                                        ? "skill"
+                                                        : "skills"}
+                                                </p>
+                                            </div>
+                                        </div>
+
+                                        {/* Shared Skills */}
+                                        {recommended.sharedSkills?.length > 0 && (
+                                            <div className="mt-5">
+                                                <p className="mb-2 text-xs font-medium uppercase tracking-wider text-slate-500">
+                                                    Shared Skills
+                                                </p>
+
+                                                <div className="flex flex-wrap gap-2">
+                                                    {recommended.sharedSkills.map(
+                                                        (skill: string) => (
+                                                            <span
+                                                                key={skill}
+                                                                className="rounded-full bg-cyan-500/10 px-2.5 py-1 text-xs text-cyan-300"
+                                                            >
+                                                                {skill}
+                                                            </span>
+                                                        )
+                                                    )}
+                                                </div>
                                             </div>
                                         )}
+
+                                        {/* View Profile */}
+                                        <div className="mt-5 text-sm font-medium text-cyan-400 transition group-hover:translate-x-1">
+                                            View Profile →
+                                        </div>
                                     </Link>
                                 ))}
                             </div>
                         )}
                     </section>
+
                 </div>
             </main>
         );
