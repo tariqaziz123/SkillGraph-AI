@@ -112,37 +112,73 @@ export default async function DeveloperPage({ params }: Props) {
                     </section>
 
                     {/* Skills */}
-                    <section className="mt-8">
-                        <h2 className="text-2xl font-semibold">
-                            Skills
-                        </h2>
+                    {/* Skills */}
+                    <section className="mt-10">
+                        <div className="flex items-end justify-between">
+                            <div>
+                                <p className="text-sm font-semibold uppercase tracking-[0.2em] text-cyan-400">
+                                    Expertise
+                                </p>
 
-                        <div className="mt-4 flex flex-wrap gap-3">
-                            {developer.skills?.map(
-                                (
-                                    skill: {
-                                        name: string;
-                                        level?: string;
-                                    },
-                                    index: number
-                                ) => (
-                                    <div
-                                        key={`${skill.name}-${index}`}
-                                        className="rounded-xl border border-cyan-500/20 bg-cyan-500/5 px-4 py-3"
-                                    >
-                                        <p className="font-medium text-cyan-300">
-                                            {skill.name}
-                                        </p>
+                                <h2 className="mt-2 text-2xl font-bold">
+                                    Skills
+                                </h2>
+                            </div>
 
-                                        {skill.level && (
-                                            <p className="mt-1 text-xs text-slate-400">
-                                                {skill.level}
-                                            </p>
-                                        )}
-                                    </div>
-                                )
+                            {developer.skills?.length > 0 && (
+                                <span className="text-sm text-slate-500">
+                                    {developer.skills.length} skills
+                                </span>
                             )}
                         </div>
+
+                        {developer.skills?.length === 0 ? (
+                            <div className="mt-5 rounded-2xl border border-dashed border-slate-700 bg-slate-900/40 p-8 text-center">
+                                <p className="text-slate-400">
+                                    No skills listed for this developer.
+                                </p>
+                            </div>
+                        ) : (
+                            <div className="mt-5 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                                {developer.skills.map(
+                                    (
+                                        skill: {
+                                            name: string;
+                                            level?: string;
+                                        },
+                                        index: number
+                                    ) => (
+                                        <div
+                                            key={`${skill.name}-${index}`}
+                                            className="group rounded-2xl border border-slate-800 bg-slate-900/60 p-5 transition-all duration-300 hover:-translate-y-1 hover:border-cyan-500/50 hover:bg-slate-900"
+                                        >
+                                            <div className="flex items-center justify-between gap-4">
+                                                <h3 className="font-semibold text-white">
+                                                    {skill.name}
+                                                </h3>
+
+                                                {skill.level && (
+                                                    <span className="rounded-full bg-cyan-500/10 px-3 py-1 text-xs font-medium text-cyan-300">
+                                                        {skill.level}
+                                                    </span>
+                                                )}
+                                            </div>
+
+                                            <div className="mt-4 h-1.5 overflow-hidden rounded-full bg-slate-800">
+                                                <div
+                                                    className={`h-full rounded-full ${skill.level === "Advanced"
+                                                            ? "w-full"
+                                                            : skill.level === "Intermediate"
+                                                                ? "w-2/3"
+                                                                : "w-1/3"
+                                                        } bg-cyan-400`}
+                                                />
+                                            </div>
+                                        </div>
+                                    )
+                                )}
+                            </div>
+                        )}
                     </section>
 
                     {/* Projects */}
