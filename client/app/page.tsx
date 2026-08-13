@@ -52,6 +52,7 @@ export default async function HomePage({ searchParams }: Props) {
             skills={stats.skills}
             companies={stats.companies}
             projects={stats.projects}
+            technologies={stats.technologies}
           />
           {/* Results */}
           <div className="mt-16">
