@@ -1,18 +1,33 @@
 import driver from "../config/db";
 
-export async function getAllDevelopers() {
+export async function getAllDevelopers(skill?: string) {
   const session = driver.session();
 
   try {
-    const result = await session.run(
-      `
+    let query = `
       MATCH (d:Developer)
       RETURN d
       ORDER BY d.name
-      `
-    );
+    `;
 
-    return result.records.map((record) => record.get("d").properties);
+    let params = {};
+
+    if (skill) {
+      query = `
+        MATCH (d:Developer)-[:HAS_SKILL]->(s:Skill)
+        WHERE toLower(s.name) = toLower($skill)
+        RETURN DISTINCT d
+        ORDER BY d.name
+      `;
+
+      params = { skill };
+    }
+
+    const result = await session.run(query, params);
+
+    return result.records.map(
+      (record) => record.get("d").properties
+    );
   } finally {
     await session.close();
   }

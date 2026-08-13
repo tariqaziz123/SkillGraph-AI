@@ -8,13 +8,16 @@ export async function getDevelopers(
   res: Response
 ): Promise<void> {
   try {
-    const developers = await getAllDevelopers();
-    res.status(200).json(developers);
+    const skill = req.query.skill as string | undefined;
+
+    const developers = await getAllDevelopers(skill);
+
+    res.json(developers);
   } catch (error) {
     console.error(error);
 
     res.status(500).json({
-      message: "Failed to fetch developers",
+      message: "Internal Server Error",
     });
   }
 }
