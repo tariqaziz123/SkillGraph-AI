@@ -6,6 +6,7 @@ import { errorHandler } from "./middleware/error.middleware";
 import { notFound } from "./middleware/notFound.middleware";
 import skillRoutes from "./routes/skill.routes";
 import technologyRoutes from "./routes/technology.routes";
+import companyRoutes from "./routes/company.routes";
 
 dotenv.config();
 
@@ -24,6 +25,7 @@ app.get("/", (req, res) => {
 app.use("/developers", developerRoutes);
 app.use("/skills", skillRoutes);
 app.use("/technologies", technologyRoutes);
+app.use("/companies", companyRoutes);
 
 app.use(notFound);
 
