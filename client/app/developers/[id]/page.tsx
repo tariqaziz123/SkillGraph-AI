@@ -16,12 +16,8 @@ export default async function DeveloperPage({ params }: Props) {
     const { id } = await params;
 
     try {
-        const [developerResponse, projectsResponse, recommendationsResponse] =
-            await Promise.all([
-                getDeveloper(id),
-                getDeveloperProjects(id),
-                getRecommendations(id),
-            ]);
+        // First check whether the developer exists
+        const developerResponse = await getDeveloper(id);
 
         if (!developerResponse) {
             return (
@@ -37,7 +33,7 @@ export default async function DeveloperPage({ params }: Props) {
 
                         <Link
                             href="/"
-                            className="inline-flex items-center gap-2 text-sm font-medium text-slate-400 transition hover:text-cyan-400"
+                            className="mt-6 inline-flex items-center gap-2 text-sm font-medium text-slate-400 transition hover:text-cyan-400"
                         >
                             ← Back to developers
                         </Link>
@@ -45,6 +41,13 @@ export default async function DeveloperPage({ params }: Props) {
                 </main>
             );
         }
+
+        // Only fetch related data after confirming the developer exists
+        const [projectsResponse, recommendationsResponse] =
+            await Promise.all([
+                getDeveloperProjects(id),
+                getRecommendations(id),
+            ]);
 
         const developer = developerResponse.data ?? developerResponse;
         const projects =
