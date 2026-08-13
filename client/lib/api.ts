@@ -64,3 +64,39 @@ export async function getRecommendations(id: string) {
 
   return response.json();
 }
+
+export async function getSkills() {
+  const response = await fetch(`${API_URL}/skills`, {
+    cache: "no-store",
+  });
+
+  if (!response.ok) {
+    throw new Error("Failed to fetch skills");
+  }
+
+  return response.json();
+}
+
+export async function getTechnologies() {
+  const response = await fetch(`${API_URL}/technologies`, {
+    cache: "no-store",
+  });
+
+  if (!response.ok) {
+    throw new Error("Failed to fetch technologies");
+  }
+
+  return response.json();
+}
+
+export async function getCompanies() {
+  const response = await fetch(`${API_URL}/companies`, {
+    cache: "no-store",
+  });
+
+  if (!response.ok) {
+    throw new Error("Failed to fetch companies");
+  }
+
+  return response.json();
+}
