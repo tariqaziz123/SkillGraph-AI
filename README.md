@@ -46,24 +46,6 @@ https://skillgraph-ai-8bju.onrender.com/
 - View projects
 - View graph-powered recommendations
 
----
-#⭐ Seed Script Instructions
-**Add after the Backend Setup section (after `npm run build`) and before Frontend Setup.**
-
-```md
-# 🌱 Seed the Database
-
-Populate the database with sample developers, skills, companies, projects, and technologies.
-
-```bash
-npm run seed
-## 🛠 Skills
-
-- Browse all available skills
-- Number of developers for each skill
-
----
-
 ## ⚙ Technologies
 
 - Browse all technologies
@@ -227,6 +209,23 @@ Build production:
 ```bash
 npm run build
 ```
+
+---
+---
+#⭐ Seed Script Instructions
+**Add after the Backend Setup section (after `npm run build`) and before Frontend Setup.**
+
+```md
+# 🌱 Seed the Database
+
+Populate the database with sample developers, skills, companies, projects, and technologies.
+
+```bash
+npm run seed
+## 🛠 Skills
+
+- Browse all available skills
+- Number of developers for each skill
 
 ---
 
