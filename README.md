@@ -119,7 +119,7 @@ SkillGraph-AI
 ## 1. Clone Repository
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/SkillGraph-AI.git
+git clone https://github.com/tariqaziz123/SkillGraph-AI.git
 
 cd SkillGraph-AI
 ```
