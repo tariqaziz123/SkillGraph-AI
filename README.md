@@ -226,9 +226,6 @@ Populate the database with sample developers, skills, companies, projects, and t
 npm run seed
 ```
 ---
-
----
-
 # 💻 Frontend Setup
 
 ```bash
