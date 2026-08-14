@@ -49,20 +49,6 @@ https://skillgraph-ai-8bju.onrender.com/
 ---
 ---
 
-# 🤔 Why a Graph Database?
-
-SkillGraph AI models relationships between developers, skills, projects, technologies, and companies.
-
-A graph database is ideal because the application focuses on connected data rather than isolated records. It enables efficient traversal of relationships such as:
-
-- Developers sharing common skills
-- Developers working on the same projects
-- Technologies used across projects
-- Companies employing developers with similar expertise
-
-Graph traversal makes recommendation queries simple and efficient, whereas a relational database would require multiple complex JOIN operations.
-
----
 # 🕸 Data Model Diagram
 
 ```text
@@ -75,9 +61,8 @@ Graph traversal makes recommendation queries simple and efficient, whereas a rel
    │                     └── USES ───► (Technology)
    │
    └── WORKS_AT ───────► (Company)
-
+```
 ---
-
 #⭐ Seed Script Instructions
 **Add after the Backend Setup section (after `npm run build`) and before Frontend Setup.**
 
