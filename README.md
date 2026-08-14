@@ -218,6 +218,7 @@ Populate the database with sample developers, skills, companies, projects, and t
 
 ```bash
 npm run seed
+```
 ## 🛠 Skills
 
 - Browse all available skills
