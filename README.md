@@ -1,50 +1,75 @@
 # 🚀 SkillGraph AI
 
-SkillGraph AI is a full-stack web application that helps discover developers, explore their skills, technologies, companies, and projects using a Neo4j graph database. It provides graph-powered developer recommendations based on shared skills.
+![Next.js](https://img.shields.io/badge/Next.js-16-black)
+![React](https://img.shields.io/badge/React-19-61DAFB)
+![TypeScript](https://img.shields.io/badge/TypeScript-5-3178C6)
+![Express.js](https://img.shields.io/badge/Express.js-Backend-000000)
+![Neo4j](https://img.shields.io/badge/Neo4j-GraphDB-008CC1)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-4-38BDF8)
+![Render](https://img.shields.io/badge/Hosted_on-Render-46E3B7)
+
+SkillGraph AI is a full-stack web application that helps discover developers, explore their skills, technologies, companies, and projects using a graph database. It provides graph-powered developer recommendations based on shared skills.
 
 > **Frontend:** Next.js + React + TypeScript + Tailwind CSS  
-> **Backend:** Node.js + Express + TypeScript + Neo4j
+> **Backend:** Node.js + Express.js + TypeScript  
+> **Database:** CognoDB (Neo4j Compatible Graph Database)
 
 ---
 
-## 🌐 Live Demo
+# 📌 Project Status
+
+✅ Completed and deployed
+
+---
+
+# 🌐 Live Demo
 
 ### Frontend
+
 https://skillgraph-ai-frontend.onrender.com/
 
 ### Backend API
+
 https://skillgraph-ai-8bju.onrender.com/
 
 ---
 
-## ✨ Features
+# ✨ Features
 
-### 👨‍💻 Developers
+## 👨‍💻 Developers
 
 - View all developers
 - Search developers by skill
 - View developer profile
-- View developer experience
-- View developer skills
-- View developer projects
-- Graph-based recommended developers
+- View experience
+- View skills
+- View projects
+- View graph-powered recommendations
 
-### 🛠 Skills
+---
+
+## 🛠 Skills
 
 - Browse all available skills
 - Number of developers for each skill
 
-### ⚙ Technologies
+---
 
-- Browse technologies
+## ⚙ Technologies
+
+- Browse all technologies
 - Number of developers using each technology
 
-### 🏢 Companies
+---
 
-- Browse companies
+## 🏢 Companies
+
+- Browse all companies
 - Number of developers working there
 
-### 🎨 UI Features
+---
+
+## 🎨 UI Features
 
 - Responsive Design
 - Dark Theme
@@ -52,8 +77,22 @@ https://skillgraph-ai-8bju.onrender.com/
 - Loading Skeletons
 - Empty States
 - Error Handling
-- Mobile Friendly
 - Sticky Navigation
+- Mobile Friendly
+- Server-Side Rendering (SSR)
+
+---
+
+# ⭐ Highlights
+
+- Full-stack application built with Next.js and Express.js
+- Graph-powered developer recommendations
+- TypeScript across frontend and backend
+- Relationship-based graph data modeling
+- Responsive UI using Tailwind CSS
+- RESTful API architecture
+- Server-side rendering with Next.js App Router
+- Production deployment on Render
 
 ---
 
@@ -67,16 +106,22 @@ https://skillgraph-ai-8bju.onrender.com/
 - Tailwind CSS
 - Fetch API
 
+---
+
 ## Backend
 
 - Node.js
 - Express.js
 - TypeScript
-- Neo4j Driver
+- Neo4j JavaScript Driver
+
+---
 
 ## Database
 
-- Neo4j Graph Database
+- CognoDB (Neo4j Compatible)
+
+---
 
 ## Deployment
 
@@ -85,9 +130,25 @@ https://skillgraph-ai-8bju.onrender.com/
 
 ---
 
+# 🏗 Architecture
+
+```text
+                Next.js Frontend
+                      │
+               Fetch REST APIs
+                      │
+             Express.js Backend
+                      │
+                Neo4j Driver
+                      │
+      CognoDB (Neo4j Compatible Database)
+```
+
+---
+
 # 📂 Project Structure
 
-```
+```text
 SkillGraph-AI
 │
 ├── client
@@ -126,7 +187,7 @@ cd SkillGraph-AI
 
 ---
 
-# Backend Setup
+# 🔧 Backend Setup
 
 ```bash
 cd server
@@ -139,20 +200,20 @@ Create a `.env` file:
 ```env
 PORT=5000
 
-NEO4J_URI=YOUR_NEO4J_URI
+NEO4J_URI=YOUR_DATABASE_URI
 
 NEO4J_USERNAME=neo4j
 
-NEO4J_PASSWORD=YOUR_PASSWORD
+NEO4J_PASSWORD=YOUR_DATABASE_PASSWORD
 ```
 
-Run the backend:
+Run development server:
 
 ```bash
 npm run dev
 ```
 
-Build backend:
+Build production:
 
 ```bash
 npm run build
@@ -160,7 +221,7 @@ npm run build
 
 ---
 
-# Frontend Setup
+# 💻 Frontend Setup
 
 ```bash
 cd client
@@ -174,13 +235,13 @@ Create `.env.local`
 NEXT_PUBLIC_API_URL=http://localhost:5000
 ```
 
-Run frontend:
+Run development server:
 
 ```bash
 npm run dev
 ```
 
-Build frontend:
+Build production:
 
 ```bash
 npm run build
@@ -188,11 +249,11 @@ npm run build
 
 ---
 
-# 📡 API Endpoints
+# 📡 REST API
 
 ## Developers
 
-```
+```http
 GET /developers
 
 GET /developers?skill=React
@@ -204,21 +265,27 @@ GET /developers/:id/projects
 GET /developers/:id/recommendations
 ```
 
+---
+
 ## Skills
 
-```
+```http
 GET /skills
 ```
 
+---
+
 ## Technologies
 
-```
+```http
 GET /technologies
 ```
 
+---
+
 ## Companies
 
-```
+```http
 GET /companies
 ```
 
@@ -226,66 +293,60 @@ GET /companies
 
 # 🧠 Graph Relationships
 
-The application uses Neo4j graph relationships:
+The application models developer relationships using a graph database.
 
-```
-Developer
-    │
-    ├── HAS_SKILL
-    │
-    ├── WORKED_ON
-    │
-    ├── WORKS_AT
-    │
-    └── USES_TECHNOLOGY
+```text
+(Developer)
+     │
+     ├── HAS_SKILL ─────────► (Skill)
+     │
+     ├── WORKED_ON ─────────► (Project)
+     │
+     ├── WORKS_AT ──────────► (Company)
+     │
+     └── USES_TECHNOLOGY ───► (Technology)
 ```
 
-Recommendations are generated by finding developers with shared skills.
+Developer recommendations are generated by finding developers with the highest number of shared skills.
 
 ---
 
-# 📱 Screens
-
-- Home
-- Developer Details
-- Skills
-- Technologies
-- Companies
-
 # 📸 Screenshots
 
-## Home
+## 🏠 Home
 
 ![Home](https://github.com/tariqaziz123/SkillGraph-AI/blob/main/client/public/screenshots/home.png)
 
 ---
 
-## Developer Profile
+## 👨‍💻 Developer Profile
 
 ![Developer](https://github.com/tariqaziz123/SkillGraph-AI/blob/main/client/public/screenshots/developer.png)
 
 ---
 
-## Skills
+## 🛠 Skills
 
 ![Skills](https://github.com/tariqaziz123/SkillGraph-AI/blob/main/client/public/screenshots/skills.png)
 
 ---
 
-## Technologies
+## ⚙ Technologies
 
 ![Technologies](https://github.com/tariqaziz123/SkillGraph-AI/blob/main/client/public/screenshots/technologies.png)
 
 ---
 
-## Companies
+## 🏢 Companies
 
 ![Companies](https://github.com/tariqaziz123/SkillGraph-AI/blob/main/client/public/screenshots/companies.png)
+
 ---
 
 # 🎥 Demo
 
 ![Demo](https://github.com/tariqaziz123/SkillGraph-AI/blob/main/client/public/screenshots/demo.gif)
+
 ---
 
 # 🚀 Deployment
@@ -294,7 +355,7 @@ The application is deployed using **Render**.
 
 - Frontend → Render Static Site
 - Backend → Render Web Service
-- Database → CognoDB
+- Database → CognoDB (Neo4j Compatible)
 
 ---
 
@@ -302,23 +363,27 @@ The application is deployed using **Render**.
 
 This project is hosted on Render's free tier.
 
-If the application has been idle, the backend may take **30–60 seconds** to wake up on the first request. After the initial startup, the application responds normally.
+If the application has been idle, the backend may take **30–60 seconds** to wake up on the first request.
+
+After the initial startup, all requests respond normally.
 
 ---
 
 # 🔮 Future Improvements
 
-- Authentication
+- Authentication & Authorization
 - Developer avatars
+- Company detail page
+- Technology detail page
+- Project detail page
 - Advanced filtering
 - Pagination
-- Project details page
-- Company details page
-- Technology details page
-- Graph visualization
 - Search suggestions
-- Unit & Integration Testing
+- Interactive graph visualization
+- Unit testing
+- Integration testing
 - Docker support
+- CI/CD pipeline
 
 ---
 
@@ -328,8 +393,12 @@ If the application has been idle, the backend may take **30–60 seconds** to wa
 
 GitHub: https://github.com/tariqaziz123
 
+Repository:
+
+https://github.com/tariqaziz123/SkillGraph-AI
+
 ---
 
 # 📄 License
 
-This project is developed for educational and assessment purposes.
+This project was developed for educational purposes and technical assessment.
