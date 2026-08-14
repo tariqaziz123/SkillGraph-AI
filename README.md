@@ -1,109 +1,127 @@
-# SkillGraph AI
+# 🚀 SkillGraph AI
 
-A full-stack SkillGraph application built as part of the **Wexa AI Software Engineer (Full-Stack/Web) Assessment**.
+SkillGraph AI is a full-stack web application that helps discover developers, explore their skills, technologies, companies, and projects using a Neo4j graph database. It provides graph-powered developer recommendations based on shared skills.
 
-The application uses a graph database to model developers, skills, technologies, companies, and projects, enabling powerful relationship-based queries and developer recommendations.
+> **Frontend:** Next.js + React + TypeScript + Tailwind CSS  
+> **Backend:** Node.js + Express + TypeScript + Neo4j
 
 ---
 
-## 🚀 Tech Stack
+## 🌐 Live Demo
 
 ### Frontend
+https://skillgraph-ai-frontend.onrender.com/
+
+### Backend API
+https://skillgraph-ai-8bju.onrender.com/
+
+---
+
+## ✨ Features
+
+### 👨‍💻 Developers
+
+- View all developers
+- Search developers by skill
+- View developer profile
+- View developer experience
+- View developer skills
+- View developer projects
+- Graph-based recommended developers
+
+### 🛠 Skills
+
+- Browse all available skills
+- Number of developers for each skill
+
+### ⚙ Technologies
+
+- Browse technologies
+- Number of developers using each technology
+
+### 🏢 Companies
+
+- Browse companies
+- Number of developers working there
+
+### 🎨 UI Features
+
+- Responsive Design
+- Dark Theme
+- Modern Dashboard UI
+- Loading Skeletons
+- Empty States
+- Error Handling
+- Mobile Friendly
+- Sticky Navigation
+
+---
+
+# 🛠 Tech Stack
+
+## Frontend
+
+- Next.js (App Router)
 - React
 - TypeScript
-- Vite
 - Tailwind CSS
-- Axios
+- Fetch API
 
-### Backend
+## Backend
+
 - Node.js
 - Express.js
 - TypeScript
 - Neo4j Driver
 
-### Database
-- CognoDB (Neo4j Compatible Graph Database)
+## Database
+
+- Neo4j Graph Database
+
+## Deployment
+
+- Render (Frontend)
+- Render (Backend)
 
 ---
 
-# Project Structure
+# 📂 Project Structure
 
 ```
-skillgraph-ai/
+SkillGraph-AI
 │
-├── client/
-│   ├── src/
-│   ├── public/
+├── client
+│   ├── app
+│   ├── components
+│   ├── lib
+│   ├── public
 │   └── package.json
 │
-├── server/
-│   ├── src/
+├── server
+│   ├── src
+│   │   ├── config
+│   │   ├── controllers
+│   │   ├── middleware
+│   │   ├── routes
+│   │   ├── services
+│   │   └── seed
 │   │
-│   ├── config/
-│   ├── controllers/
-│   ├── middleware/
-│   ├── routes/
-│   ├── services/
-│   ├── seed/
-│   └── index.ts
-│
 │   ├── package.json
-│   └── .env.example
+│   └── tsconfig.json
 │
 └── README.md
 ```
 
 ---
 
-# Features
+# ⚡ Installation
 
-- Graph-based developer database
-- Developer profile API
-- Search developers by skill
-- Developer recommendations based on shared skills
-- Project information for each developer
-- Skills API
-- Technologies API
-- Companies API
-- Parameterized Cypher queries
-- Layered architecture (Routes → Controllers → Services)
-
----
-
-# Graph Model
-
-### Nodes
-
-- Developer
-- Skill
-- Technology
-- Company
-- Project
-
-### Relationships
-
-```
-Developer --HAS_SKILL--> Skill
-
-Developer --WORKED_AT--> Company
-
-Developer --WORKED_ON--> Project
-
-Project --USES--> Technology
-
-Skill --RELATED_TO--> Skill
-```
-
----
-
-# Getting Started
-
-## Clone Repository
+## 1. Clone Repository
 
 ```bash
-git clone <repository-url>
+git clone https://github.com/YOUR_USERNAME/SkillGraph-AI.git
 
-cd skillgraph-ai
+cd SkillGraph-AI
 ```
 
 ---
@@ -116,34 +134,28 @@ cd server
 npm install
 ```
 
-Create `.env`
+Create a `.env` file:
 
 ```env
 PORT=5000
 
-NEO4J_URI=bolt+s://your-instance.databases.cognodb.com
+NEO4J_URI=YOUR_NEO4J_URI
 
-NEO4J_USERNAME=cognodb
+NEO4J_USERNAME=neo4j
 
-NEO4J_PASSWORD=your-password
+NEO4J_PASSWORD=YOUR_PASSWORD
 ```
 
-Run database seed
-
-```bash
-npm run seed
-```
-
-Start backend
+Run the backend:
 
 ```bash
 npm run dev
 ```
 
-Backend runs on
+Build backend:
 
-```
-http://localhost:5000
+```bash
+npm run build
 ```
 
 ---
@@ -154,63 +166,43 @@ http://localhost:5000
 cd client
 
 npm install
+```
 
+Create `.env.local`
+
+```env
+NEXT_PUBLIC_API_URL=http://localhost:5000
+```
+
+Run frontend:
+
+```bash
 npm run dev
 ```
 
-Frontend runs on
+Build frontend:
 
-```
-http://localhost:5173
+```bash
+npm run build
 ```
 
 ---
 
-# API Endpoints
+# 📡 API Endpoints
 
 ## Developers
 
-### Get All Developers
-
 ```
 GET /developers
-```
 
----
-
-### Get Developer
-
-```
-GET /developers/:id
-```
-
----
-
-### Search Developers by Skill
-
-```
 GET /developers?skill=React
-```
 
----
+GET /developers/:id
 
-### Developer Recommendations
+GET /developers/:id/projects
 
-```
 GET /developers/:id/recommendations
 ```
-
-Returns developers with shared skills ranked by similarity.
-
----
-
-### Developer Projects
-
-```
-GET /developers/:id/projects
-```
-
----
 
 ## Skills
 
@@ -218,15 +210,11 @@ GET /developers/:id/projects
 GET /skills
 ```
 
----
-
 ## Technologies
 
 ```
 GET /technologies
 ```
-
----
 
 ## Companies
 
@@ -236,101 +224,78 @@ GET /companies
 
 ---
 
-# Sample Response
+# 🧠 Graph Relationships
 
-```json
-{
-  "success": true,
-  "count": 8,
-  "data": [
-    {
-      "id": "dev-001",
-      "name": "Aarav Sharma",
-      "experience": 5
-    }
-  ]
-}
+The application uses Neo4j graph relationships:
+
 ```
+Developer
+    │
+    ├── HAS_SKILL
+    │
+    ├── WORKED_ON
+    │
+    ├── WORKS_AT
+    │
+    └── USES_TECHNOLOGY
+```
+
+Recommendations are generated by finding developers with shared skills.
 
 ---
 
-# Recommendation Logic
+# 📱 Screens
 
-Recommendations are generated using graph traversal.
-
-The backend finds developers who share skills with the selected developer and ranks them by the number of common skills.
-
-Example Cypher pattern:
-
-```cypher
-MATCH (d:Developer {id: $id})-[:HAS_SKILL]->(skill:Skill)<-[:HAS_SKILL]-(other:Developer)
-WHERE d <> other
-RETURN other, count(skill) AS commonSkills
-ORDER BY commonSkills DESC
-```
+- Home
+- Developer Details
+- Skills
+- Technologies
+- Companies
 
 ---
 
-# Development Commands
+# 🚀 Deployment
 
-Backend
+The application is deployed using **Render**.
 
-```bash
-npm run dev
-npm run seed
-npm run build
-```
-
-Frontend
-
-```bash
-npm run dev
-npm run build
-```
+- Frontend → Render Static Site
+- Backend → Render Web Service
+- Database → Neo4j AuraDB
 
 ---
 
-# Environment Variables
+# 📝 Render Free Tier Notice
 
-Server requires:
+This project is hosted on Render's free tier.
 
-```env
-PORT=
-
-NEO4J_URI=
-
-NEO4J_USERNAME=
-
-NEO4J_PASSWORD=
-```
+If the application has been idle, the backend may take **30–60 seconds** to wake up on the first request. After the initial startup, the application responds normally.
 
 ---
 
-# Assumptions
+# 🔮 Future Improvements
 
-- CognoDB is Neo4j compatible.
-- Database is seeded before running the application.
-- Frontend communicates with the backend through REST APIs.
-
----
-
-# Future Improvements
-
-- JWT Authentication
+- Authentication
+- Developer avatars
+- Advanced filtering
 - Pagination
-- API Documentation using Swagger
-- Unit Tests
-- Docker Support
-- CI/CD Pipeline
+- Project details page
+- Company details page
+- Technology details page
+- Graph visualization
+- Search suggestions
+- Unit & Integration Testing
+- Docker support
 
 ---
 
-# Author
+# 👨‍💻 Author
 
 **Tariq Aziz**
 
-React.js | TypeScript | Node.js | Graph Databases
+GitHub: https://github.com/tariqaziz123
 
 ---
 
-Built as part of the **Wexa AI Software Engineer (Full-Stack/Web) Assessment**.
+# 📄 License
+
+This project is developed for educational and assessment purposes.
