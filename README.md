@@ -47,22 +47,6 @@ https://skillgraph-ai-8bju.onrender.com/
 - View graph-powered recommendations
 
 ---
----
-
-# 🕸 Data Model Diagram
-
-```text
-(Developer)
-   │
-   ├── HAS_SKILL ─────► (Skill)
-   │
-   ├── WORKED_ON ─────► (Project)
-   │                     │
-   │                     └── USES ───► (Technology)
-   │
-   └── WORKS_AT ───────► (Company)
-```
----
 #⭐ Seed Script Instructions
 **Add after the Backend Setup section (after `npm run build`) and before Frontend Setup.**
 
