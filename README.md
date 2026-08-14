@@ -218,6 +218,14 @@ Build production:
 ```bash
 npm run build
 ```
+# 🌱 Seed the Database
+
+Populate the database with sample developers, skills, companies, projects, and technologies.
+
+```bash
+npm run seed
+```
+---
 
 ---
 
